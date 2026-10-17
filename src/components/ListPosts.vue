@@ -94,8 +94,8 @@ function getGroupName(p: Post) {
                 <span class="text-sm opacity-50 whitespace-nowrap">
                   {{ formatDate(article.date, true) }}
                 </span>
-                <div v-if="article.tags" class="tags">
-                  <span v-for="tag in article.tags" :key="tag" class="tag-item">{{ tag }}</span>
+                <div v-if="article.tags" class="flex gap-2">
+                  <Badge v-for="tag in article.tags" :key="tag" as="span" variant="secondary">{{ tag }}</Badge>
                 </div>
               </div>
             </li>
@@ -105,18 +105,3 @@ function getGroupName(p: Post) {
     </ul>
   </div>
 </template>
-
-<style scoped>
-.tags {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.tag-item {
-  padding: 0.1rem 0.4rem;
-  font-size: 0.8rem;
-  border-radius: 0.25rem;
-  background-color: #f0f0f0;
-  color: #555;
-}
-</style>

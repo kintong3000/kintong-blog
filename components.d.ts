@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppFooter: typeof import('./src/components/AppFooter.vue')['default']
     AppHeader: typeof import('./src/components/AppHeader.vue')['default']
+    Badge: typeof import('./src/components/ui/badge/Badge.vue')['default']
     Button: typeof import('./src/components/ui/button/Button.vue')['default']
     CiMail: typeof import('./src/components/icons/CiMail.vue')['default']
     CodeBlock: typeof import('./src/components/ui/code-block/CodeBlock.vue')['default']
@@ -29,7 +30,10 @@ declare module 'vue' {
     SkillIconsGithubDark: typeof import('./src/components/icons/SkillIconsGithubDark.vue')['default']
     SkillIconsGithubLight: typeof import('./src/components/icons/SkillIconsGithubLight.vue')['default']
     TagButton: typeof import('./src/components/TagButton.vue')['default']
+    Toggle: typeof import('./src/components/ui/toggle/Toggle.vue')['default']
     ToggleDarkSwitch: typeof import('./src/components/ToggleDarkSwitch.vue')['default']
+    ToggleGroup: typeof import('./src/components/ui/toggle-group/ToggleGroup.vue')['default']
+    ToggleGroupItem: typeof import('./src/components/ui/toggle-group/ToggleGroupItem.vue')['default']
     VPIconMoon: typeof import('./src/components/icons/VPIconMoon.vue')['default']
     VPIconSun: typeof import('./src/components/icons/VPIconSun.vue')['default']
     VPSwitch: typeof import('./src/components/VPSwitch.vue')['default']

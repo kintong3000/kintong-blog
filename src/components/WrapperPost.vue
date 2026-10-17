@@ -94,9 +94,9 @@ onMounted(() => {
       </p>
       <div
           v-if="frontmatter.tags"
-          class="tags slide-enter-70"
+          class="flex gap-2 -mt-4 slide-enter-70"
       >
-        <span v-for="tag in frontmatter.tags" :key="tag" class="tag-item">{{ tag }}</span>
+        <Badge v-for="tag in frontmatter.tags" :key="tag" as="span" variant="secondary">{{ tag }}</Badge>
       </div>
     </div>
     <article class="text-base ">
@@ -118,18 +118,3 @@ onMounted(() => {
   <AppFooter/>
 
 </template>
-
-<style scoped>
-.tags {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: -1rem;
-}
-.tag-item {
-  padding: 0.1rem 0.4rem;
-  font-size: 0.8rem;
-  border-radius: 0.25rem;
-  background-color: #f0f0f0;
-  color: #555;
-}
-</style>
