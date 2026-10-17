@@ -26,13 +26,10 @@ html {
 }
 :root {
     --c-bg: var(--background);
-    --c-scrollbar: #bbb;
-    --c-scrollbar-hover: #949494;
+    color-scheme: light;
 }
 html.dark {
-    --c-scrollbar: #111;
-    --c-scrollbar-hover: #222;
-
+    color-scheme: dark;
 }
 
 html.dark .scroll-to-top {
@@ -67,10 +64,6 @@ button {
     height: 2px;
 }
 
-* {
-    scrollbar-color: var(--c-scrollbar) var(--c-bg);
-}
-
 .sponsorkit-avatar {
     cursor: pointer;
 }
@@ -83,25 +76,6 @@ button {
     font-weight: 300;
     font-size: 15px;
     transform: translateY(8px);
-}
-
-::-webkit-scrollbar {
-    width: 6px;
-}
-::-webkit-scrollbar:horizontal {
-    height: 6px;
-}
-::-webkit-scrollbar-track,
-::-webkit-scrollbar-corner {
-    background: var(--c-bg);
-    border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-    background: var(--c-scrollbar);
-    border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: var(--c-scrollbar-hover);
 }
 
 h2 + p > em:first-child {
