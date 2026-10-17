@@ -1,16 +1,16 @@
+/* 代码块 token 的字体样式，颜色由 token 上的 text-(--shiki-light) dark:text-(--shiki-dark) 处理 */
 /*noinspection CssUnresolvedCustomProperty*/
-html.dark .shiki,
-html.dark .shiki span {
-    color: var(--shiki-dark) !important;
-    background-color: var(--my-code-dark-bg) !important;
-    /* 可选，用于定义字体样式 */
-    font-style: var(--shiki-dark-font-style) !important;
-    font-weight: var(--shiki-dark-font-weight) !important;
-    text-decoration: var(--shiki-dark-text-decoration) !important;
+[data-slot=code-block-line] span[style] {
+    font-style: var(--shiki-light-font-style);
+    font-weight: var(--shiki-light-font-weight);
+    text-decoration: var(--shiki-light-text-decoration);
 }
 
-:root{
-    --my-code-dark-bg:#161619
+/*noinspection CssUnresolvedCustomProperty*/
+html.dark [data-slot=code-block-line] span[style] {
+    font-style: var(--shiki-dark-font-style);
+    font-weight: var(--shiki-dark-font-weight);
+    text-decoration: var(--shiki-dark-text-decoration);
 }
 
 html{

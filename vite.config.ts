@@ -9,11 +9,11 @@ import matter from "gray-matter";
 import fs from 'node:fs'
 import Markdown from 'unplugin-vue-markdown/vite'
 import type MarkdownIt from 'markdown-it'
-import Shiki from "@shikijs/markdown-it";
 import TOC from "markdown-it-table-of-contents";
 import anchor from "markdown-it-anchor";
 import GitHubAlerts from 'markdown-it-github-alerts'
 import tailwindcss from '@tailwindcss/vite'
+import markdownCodeBlock from './plugins/markdownCodeBlock'
 
 
 export default defineConfig({
@@ -46,13 +46,7 @@ export default defineConfig({
                 // unplugin-vue-markdown 使用与 markdown-it 兼容的 markdown-exit，
                 // 但各插件的类型是按 markdown-it 写的，这里统一转成 markdown-it 类型
                 const md = markdownExit as unknown as MarkdownIt
-                md.use(await Shiki({
-                    themes: {
-                        light: 'rose-pine-dawn',
-                        dark: 'vitesse-dark',
-                    }
-
-                }))
+                await markdownCodeBlock(md)
 
                 md.use(TOC, {
                     includeLevel: [1, 2, 3, 4],

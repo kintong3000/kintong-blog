@@ -182,7 +182,7 @@ html.dark .list-title {
 .prose a code {
   color: #111827;
 }
-.prose pre {
+.prose pre:not([data-slot]) {
   color: #e5e7eb;
   overflow-x: auto;
   font-size: 0.875em;
@@ -420,7 +420,7 @@ html.dark .list-title {
 .prose-sm h3 code {
   font-size: 0.8888889em;
 }
-.prose-sm pre {
+.prose-sm pre:not([data-slot]) {
   font-size: 0.8571429em;
   line-height: 1.6666667;
   margin-top: 1.6666667em;
@@ -535,19 +535,6 @@ html.dark .list-title {
 
 
 /* Prose */
-.prose pre:not(.shiki) {
-  padding: 0;
-  margin: 0;
-  background: transparent;
-}
-
-.prose .shiki {
-  font-family: 'DM Mono', 'Input Mono', 'Fira Code', monospace;
-  font-size: 0.92em;
-  line-height: 1.4;
-  margin: 0.5em 0;
-}
-
 .prose img {
   width: 100%;
 }
