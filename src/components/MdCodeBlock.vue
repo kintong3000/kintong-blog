@@ -47,7 +47,7 @@ function download() {
 
 <template>
   <CodeBlock class="my-4">
-    <CodeBlockHeader v-if="label">
+    <CodeBlockHeader v-if="label" class="border-b border-foreground/10 pb-3">
       <CodeBlockTitle>{{ label }}</CodeBlockTitle>
     </CodeBlockHeader>
     <CodeBlockActions>
@@ -70,7 +70,11 @@ function download() {
       :id="id"
       line-numbers
       :wrap="wrap"
-      :class="collapsible && !expanded ? 'max-h-80 overflow-y-hidden mask-b-from-60%' : undefined"
+      :class="[
+        // 标题栏下有分隔线，内容顶部恢复完整间距
+        'group-has-data-[slot=code-block-header]/code-block:pt-4',
+        collapsible && !expanded && 'max-h-80 overflow-y-hidden mask-b-from-60%',
+      ]"
     >
       <slot />
     </CodeBlockContent>
