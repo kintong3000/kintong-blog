@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from "vue"
-import type { CodeBlockVariants } from "."
-import { cn } from "@/lib/utils"
-import { codeBlockVariants } from "."
+import type { HTMLAttributes } from 'vue'
+import type { CodeBlockVariants } from '.'
+import { cn } from 'cn'
+import { codeBlockVariants } from '.'
 
 const props = withDefaults(defineProps<{
-  variant?: CodeBlockVariants["variant"]
-  size?: "default" | "sm"
-  class?: HTMLAttributes["class"]
+  variant?: CodeBlockVariants['variant']
+  size?: 'default' | 'sm'
+  class?: HTMLAttributes['class']
 }>(), {
-  variant: "default",
-  size: "default",
+  variant: 'default',
+  size: 'default',
 })
 </script>
 

@@ -1,8 +1,8 @@
-import type { GrammarState } from "shiki/core"
-import type { MaybeRefOrGetter } from "vue"
-import type { HighlightedToken, Highlighter } from "./highlighter"
-import { computed, shallowRef, toValue, watch } from "vue"
-import { loadHighlighter } from "./highlighter"
+import type { GrammarState } from 'shiki/core'
+import type { MaybeRefOrGetter } from 'vue'
+import type { HighlightedToken, Highlighter } from './highlighter'
+import { computed, shallowRef, toValue, watch } from 'vue'
+import { loadHighlighter } from './highlighter'
 
 export function useHighlightedCode(
   value: MaybeRefOrGetter<string>,
@@ -12,7 +12,7 @@ export function useHighlightedCode(
 
   watch(() => toValue(language), (lang, _, onCleanup) => {
     // Highlighting runs in the browser. The server renders the plain lines.
-    if (typeof window === "undefined")
+    if (typeof window === 'undefined')
       return
 
     let cancelled = false
@@ -34,21 +34,21 @@ export function useHighlightedCode(
     text: string
     lines: HighlightedToken[][]
     state?: GrammarState
-  } = { highlighter: null, text: "", lines: [] }
+  } = { highlighter: null, text: '', lines: [] }
 
   return computed<HighlightedToken[][]>(() => {
     const raw = toValue(value)
     // A trailing newline would render as an extra empty line.
-    const code = raw.endsWith("\n") ? raw.slice(0, -1) : raw
+    const code = raw.endsWith('\n') ? raw.slice(0, -1) : raw
     const current = highlighter.value
 
     if (!current)
-      return code.split("\n").map(line => (line ? [{ content: line }] : []))
+      return code.split('\n').map(line => (line ? [{ content: line }] : []))
 
     if (done.highlighter !== current || !code.startsWith(done.text))
-      done = { highlighter: current, text: "", lines: [] }
+      done = { highlighter: current, text: '', lines: [] }
 
-    const end = code.lastIndexOf("\n") + 1
+    const end = code.lastIndexOf('\n') + 1
 
     if (end > done.text.length) {
       const result = current.highlight(

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { HTMLAttributes, VNode } from "vue"
-import type { CodeBlockLineVariants } from "."
-import { cn } from "@/lib/utils"
-import { Comment, Fragment, Text, useSlots } from "vue"
-import { codeBlockLineVariants } from "."
+import type { HTMLAttributes, VNode } from 'vue'
+import type { CodeBlockLineVariants } from '.'
+import { cn } from 'cn'
+import { Comment, Fragment, Text, useSlots } from 'vue'
+import { codeBlockLineVariants } from '.'
 
 const props = withDefaults(defineProps<{
-  variant?: CodeBlockLineVariants["variant"]
-  class?: HTMLAttributes["class"]
+  variant?: CodeBlockLineVariants['variant']
+  class?: HTMLAttributes['class']
 }>(), {
-  variant: "default",
+  variant: 'default',
 })
 
 const slots = useSlots()
@@ -19,7 +19,7 @@ function hasContent(nodes: VNode[]): boolean {
     if (node.type === Comment)
       return false
     if (node.type === Text)
-      return node.children !== ""
+      return node.children !== ''
     if (node.type === Fragment)
       return Array.isArray(node.children) && hasContent(node.children as VNode[])
     return true

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { HighlightedToken } from "./highlighter"
+import type { HighlightedToken } from './highlighter'
 
 defineProps<{
   token: HighlightedToken

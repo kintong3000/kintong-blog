@@ -19,7 +19,7 @@ export default async function markdownCodeBlock(md: MarkdownIt) {
     const shiki = await Shiki({
         themes: {
             light: 'rose-pine-dawn',
-            dark: 'vitesse-dark',
+            dark: 'github-dark',
         },
         // 不输出默认颜色，只输出 --shiki-light / --shiki-dark 变量，由 token 上的类名切换
         defaultColor: false,

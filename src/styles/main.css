@@ -25,13 +25,11 @@ html {
     overflow-y: scroll;
 }
 :root {
-    --c-bg: #ffffff;
+    --c-bg: var(--background);
     --c-scrollbar: #bbb;
     --c-scrollbar-hover: #949494;
 }
 html.dark {
-    /*--c-bg: #201c1c;*/
-    --c-bg: #1B1B1F;
     --c-scrollbar: #111;
     --c-scrollbar-hover: #222;
 

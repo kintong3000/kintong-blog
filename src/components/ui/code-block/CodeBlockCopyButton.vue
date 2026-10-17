@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import type { PrimitiveProps } from "reka-ui"
+import type { PrimitiveProps } from 'reka-ui'
 
-import type { HTMLAttributes } from "vue"
+import type { HTMLAttributes } from 'vue'
 import type { ButtonVariants } from '@/components/ui/button'
-import { CheckIcon, CopyIcon } from "@lucide/vue"
-import { useClipboard } from "@vueuse/core"
-import { cn } from "@/lib/utils"
+import { CheckIcon, CopyIcon } from '@lucide/vue'
+import { useClipboard } from '@vueuse/core'
+import { cn } from 'cn'
 import { Button } from '@/components/ui/button'
 
 defineOptions({ inheritAttrs: false })
 
 const props = withDefaults(defineProps<PrimitiveProps & {
   value: string
-  variant?: ButtonVariants["variant"]
-  size?: ButtonVariants["size"]
-  class?: HTMLAttributes["class"]
+  variant?: ButtonVariants['variant']
+  size?: ButtonVariants['size']
+  class?: HTMLAttributes['class']
 }>(), {
-  as: "button",
-  variant: "ghost",
-  size: "icon-xs",
+  as: 'button',
+  variant: 'ghost',
+  size: 'icon-xs',
 })
 
 const { copy, copied } = useClipboard({ copiedDuring: 2000, legacy: true })
@@ -34,7 +34,7 @@ const { copy, copied } = useClipboard({ copiedDuring: 2000, legacy: true })
     :variant="variant"
     :size="size"
     :aria-label="copied ? 'Copied' : 'Copy'"
-    :class="cn('', props.class)"
+    :class="cn('hover:bg-foreground/5 dark:hover:bg-foreground/10', props.class)"
     @click="copy(props.value)"
   >
     <CheckIcon v-if="copied" />
