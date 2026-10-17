@@ -6,8 +6,9 @@ import {VueRouterAutoImports} from 'vue-router/unplugin'
 import VueRouter from 'vue-router/vite'
 import Components from 'unplugin-vue-components/vite'
 import matter from "gray-matter";
-import fs from 'fs-extra'
+import fs from 'node:fs'
 import Markdown from 'unplugin-vue-markdown/vite'
+import type MarkdownIt from 'markdown-it'
 import Shiki from "@shikijs/markdown-it";
 import TOC from "markdown-it-table-of-contents";
 import anchor from "markdown-it-anchor";
@@ -41,7 +42,10 @@ export default defineConfig({
             markdownOptions: {
                 quotes: '""\'\'',
             },
-            async markdownSetup(md) {
+            async markdownSetup(markdownExit) {
+                // unplugin-vue-markdown 使用与 markdown-it 兼容的 markdown-exit，
+                // 但各插件的类型是按 markdown-it 写的，这里统一转成 markdown-it 类型
+                const md = markdownExit as unknown as MarkdownIt
                 md.use(await Shiki({
                     themes: {
                         light: 'rose-pine-dawn',

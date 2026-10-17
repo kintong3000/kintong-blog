@@ -1,13 +1,17 @@
-<script setup>
-const props = defineProps({
-  options: { type: Array, required: true },
-  modelValue: { type: Array, default: () => [] },
-});
-const emit = defineEmits(["update:modelValue"]);
+<script setup lang="ts">
+const props = withDefaults(defineProps<{
+  options: string[]
+  modelValue?: string[]
+}>(), {
+  modelValue: () => [],
+})
+const emit = defineEmits<{
+  'update:modelValue': [value: string[]]
+}>()
 
-function onChange(event, item) {
+function onChange(event: Event, item: string) {
   const next = [...props.modelValue];
-  if (event.target.checked) {
+  if ((event.target as HTMLInputElement).checked) {
     if (!next.includes(item)) next.push(item);
   } else {
     const i = next.indexOf(item);
