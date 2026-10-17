@@ -7,12 +7,12 @@ import {transformerMetaHighlight, transformerNotationDiff, transformerNotationHi
 /**
  * 构建时用 Shiki 高亮代码块，并把输出改写成 shadcn-vue 的 CodeBlock 组件：
  *
- * <MdCodeBlock lang code title line-numbers>
+ * <MdCodeBlock lang code title>
  *   <CodeBlockLine variant><span v-pre>...带颜色的 token...</span></CodeBlockLine>
  * </MdCodeBlock>
  *
  * 支持的写法：
- *   ```ts title="main.ts" {1,3} showLineNumbers
+ *   ```ts title="main.ts" {1,3}
  *   // [!code ++]   // [!code --]   // [!code highlight]
  */
 export default async function markdownCodeBlock(md: MarkdownIt) {
@@ -95,7 +95,6 @@ function transformerCodeBlock(): ShikiTransformer {
                     // 复制用的纯文本，取自处理后的行，[!code ++] 这类标记已被去掉
                     code: lines.map(textOf).join('\n'),
                     ...(title && {title}),
-                    ...(/\bshowLineNumbers\b/.test(meta) && {'line-numbers': ''}),
                 },
                 children: lines.map((line): Element => ({
                     type: 'element',
