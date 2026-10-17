@@ -1,16 +1,5 @@
 <script setup>
 import AppHeader from "./components/AppHeader.vue";
-
-import {useRoute} from 'vue-router'
-import {computed} from 'vue'
-import {useDark} from "@vueuse/core";
-
-
-const route = useRoute()
-const isHomePage = computed(() => route.name === '/')
-const isDark = useDark();
-
-const raysColor = computed(() => (isDark.value ? '#ffffff' : '#ffffff'));
 </script>
 
 <template>

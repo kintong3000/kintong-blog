@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type {Post} from "../types";
-import {formatDate} from "../../composables/formatDate";
+import type {Post} from "@/types";
+import {formatDate} from "@/utils/formatDate";
 import {ref, computed} from 'vue';
 
 const props = defineProps<{

@@ -31,8 +31,12 @@
 ├── src/
 │   ├── App.vue             # Vue 应用根组件
 │   ├── main.js             # 应用入口文件
-│   ├── components/         # 全局 Vue 组件
-│   └── styles/             # 全局样式
+│   ├── components/         # 全局 Vue 组件（自动导入）
+│   │   └── icons/          # 图标组件
+│   ├── styles/             # 全局样式
+│   ├── types/              # TypeScript 类型定义
+│   └── utils/              # 工具函数
+├── public/                 # 静态资源，原样复制到 dist/
 └── vite.config.js          # Vite 配置文件
 ```
 

@@ -52,23 +52,9 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
-    '/doc-preview': RouteRecordInfo<
-      '/doc-preview',
-      '/doc-preview',
-      Record<never, never>,
-      Record<never, never>,
-      | never
-    >,
     '/email': RouteRecordInfo<
       '/email',
       '/email',
-      Record<never, never>,
-      Record<never, never>,
-      | never
-    >,
-    '/library': RouteRecordInfo<
-      '/library',
-      '/library',
       Record<never, never>,
       Record<never, never>,
       | never
@@ -110,25 +96,9 @@ declare module 'vue-router/auto-routes' {
       pathParamNames:
         | never
     }
-    'pages/doc-preview.vue': {
-      routes:
-        | '/doc-preview'
-      views:
-        | never
-      pathParamNames:
-        | never
-    }
     'pages/email.vue': {
       routes:
         | '/email'
-      views:
-        | never
-      pathParamNames:
-        | never
-    }
-    'pages/library.vue': {
-      routes:
-        | '/library'
       views:
         | never
       pathParamNames:

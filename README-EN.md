@@ -32,8 +32,12 @@ This is a modern, high-performance static blog website built with Vue 3 and Vite
 ├── src/
 │   ├── App.vue             # Root Vue application component
 │   ├── main.js             # Application entry point
-│   ├── components/         # Global Vue components
-│   └── styles/             # Global styles
+│   ├── components/         # Global Vue components (auto-imported)
+│   │   └── icons/          # Icon components
+│   ├── styles/             # Global styles
+│   ├── types/              # TypeScript type definitions
+│   └── utils/              # Utility functions
+├── public/                 # Static assets, copied as-is to dist/
 └── vite.config.js          # Vite configuration file
 ```
 

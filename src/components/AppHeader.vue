@@ -5,7 +5,7 @@
       <div class="nav h-16" :class="{ top: isTop }">
         <RouterLink class="w-12 h-12  m-5 select-none outline-none pt-1 logo" to="/" title="back to home">
           <!--        <router-link class="w-12 h-12 absolute xl:fixed m-5 select-none outline-none" to="/">-->
-          <logo/>
+          <Logo/>
         </RouterLink>
 
         <div class="spacer"/>
@@ -14,11 +14,6 @@
             Blog
           </RouterLink>
 
-          <div class="divider"></div>
-
-          <RouterLink to="/library">
-            Library
-          </RouterLink>
 <!--          <RouterLink to="/projects">-->
 <!--            Projects-->
 <!--          </RouterLink>-->
