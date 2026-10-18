@@ -25,6 +25,9 @@ html.dark .list-title {
   max-width: 65ch;
   font-size: 1rem;
   line-height: 1.75;
+  /* 中英文之间自动留空隙；IDE 只认识旧的 -ms- 取值，故忽略检查 */
+  /*noinspection CssInvalidPropertyValue*/
+  text-autospace: normal;
 }
 .prose [class~='lead'] {
   color: #4b5563;
