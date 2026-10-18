@@ -50,8 +50,7 @@ export default defineConfig({
 
                 md.use(TOC, {
                     includeLevel: [1, 2, 3, 4],
-                    // containerHeaderHtml: '<div class="table-of-contents-anchor"><div class="icon-[material-symbols--content-paste] size-[1em]"></div></div>',
-                    containerHeaderHtml: '<div class="table-of-contents-anchor"><div class="icon-[material-symbols--content-paste-sharp] size-[1em]"></div>Contents</div>'
+                    containerHeaderHtml: '<div class="table-of-contents-anchor" role="img" aria-label="目录"><div class="icon-[material-symbols--toc-rounded] size-[1em]"></div></div>'
                 })
 
                 md.use(anchor)

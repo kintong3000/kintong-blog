@@ -18,7 +18,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* vite.config.js 中 markdown TOC 的 HTML 字符串里用到的图标 */
-@source inline("icon-[material-symbols--content-paste-sharp] size-[1em]");
+@source inline("icon-[material-symbols--toc-rounded] size-[1em]");
 
 :root {
   --radius: 0.625rem;

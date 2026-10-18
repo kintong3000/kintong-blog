@@ -11,8 +11,13 @@
 }
 
 .table-of-contents-anchor {
-    @apply mx-2 text-lg flex items-center;
+    @apply mx-2 text-xl flex items-center opacity-40 transition duration-700;
     padding-left:0.5em;
+}
+
+.table-of-contents:hover .table-of-contents-anchor,
+.table-of-contents.toc-visible .table-of-contents-anchor {
+    opacity: 0.75;
 }
 
 .table-of-contents > ul {
@@ -44,13 +49,23 @@
 }
 
 .table-of-contents ul > li > a {
-    @apply opacity-75 hover:opacity-100 transition;
+    @apply opacity-75 hover:opacity-100;
+    /* 下划线用背景渐变绘制并固定在左侧：变宽即从左到右出现，变窄即从右到左消失 */
+    background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 1px;
+    transition: opacity 150ms, color 150ms, background-size 450ms ease;
+}
+
+/* 目录链接不需要正文链接的下划线 */
+.table-of-contents ul > li > a,
+.table-of-contents ul > li > a:hover {
+    border-bottom: none;
 }
 
 /* 当前阅读的章节 */
 .table-of-contents ul > li > a.active {
     @apply opacity-100 font-semibold;
     color: var(--fg-deeper);
+    background-size: 100% 1px;
 }
 
 
