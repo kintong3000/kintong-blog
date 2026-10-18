@@ -29,6 +29,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SkillIconsGithubDark: typeof import('./src/components/icons/SkillIconsGithubDark.vue')['default']
     SkillIconsGithubLight: typeof import('./src/components/icons/SkillIconsGithubLight.vue')['default']
+    TagBadge: typeof import('./src/components/TagBadge.vue')['default']
     TagButton: typeof import('./src/components/TagButton.vue')['default']
     Toggle: typeof import('./src/components/ui/toggle/Toggle.vue')['default']
     ToggleDarkSwitch: typeof import('./src/components/ToggleDarkSwitch.vue')['default']

@@ -152,7 +152,7 @@ onMounted(() => {
           v-if="frontmatter.tags"
           class="flex gap-2 -mt-4 slide-enter-70"
       >
-        <Badge v-for="tag in frontmatter.tags" :key="tag" as="span" variant="secondary">{{ tag }}</Badge>
+        <TagBadge v-for="tag in frontmatter.tags" :key="tag" :tag="tag" />
       </div>
     </div>
     <article class="text-base ">

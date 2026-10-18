@@ -95,7 +95,7 @@ function getGroupName(p: Post) {
                   {{ formatDate(article.date, true) }}
                 </span>
                 <div v-if="article.tags" class="flex gap-2">
-                  <Badge v-for="tag in article.tags" :key="tag" as="span" variant="secondary">{{ tag }}</Badge>
+                  <TagBadge v-for="tag in article.tags" :key="tag" :tag="tag" />
                 </div>
               </div>
             </li>
