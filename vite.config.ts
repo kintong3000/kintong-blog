@@ -59,7 +59,6 @@ export default defineConfig({
                 // 表格外包一层容器，窄屏时横向滚动而不撑破版面
                 md.renderer.rules.table_open = () => '<div class="table-wrapper"><table>'
                 md.renderer.rules.table_close = () => '</table></div>'
-                // md.use(preWrapperPlugin, false)
             }
         }),
 
@@ -73,7 +72,7 @@ export default defineConfig({
                 if (!path)
                     return
 
-                if (!path.includes('projects.md') && path.endsWith('.md')) {
+                if (path.endsWith('.md')) {
                     const {data} = matter(fs.readFileSync(path, 'utf-8'))
                     route.addToMeta({
                         frontmatter: data,

@@ -134,7 +134,7 @@ onMounted(() => {
 
 <template>
 
-  <div class="prose prose-coolgray dark:prose-invert m-auto px-5 box-content">
+  <div class="prose m-auto px-5 box-content">
     <div
         v-if="frontmatter.title"
         class="prose m-auto mb-8"

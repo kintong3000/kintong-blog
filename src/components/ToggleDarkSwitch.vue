@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import {inject, computed} from 'vue'
 import VPIconMoon from './icons/VPIconMoon.vue'
 import VPIconSun from './icons/VPIconSun.vue'
 

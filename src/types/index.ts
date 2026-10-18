@@ -4,11 +4,6 @@ export interface Frontmatter {
   draft?: boolean
   type?: string
   redirect?: string
-  lang?: string
-  duration?: string
-  recording?: string
-  upcoming?: boolean
-  place?: string
   tags?: string[]
 }
 

@@ -11,10 +11,6 @@
 </template>
 
 <style scoped>
-.flex-grow {
-  flex-grow: 1;
-}
-
 @media (prefers-reduced-motion) {
   path {
     animation: none !important;

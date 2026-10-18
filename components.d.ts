@@ -24,7 +24,6 @@ declare module 'vue' {
     CodeBlockToken: typeof import('./src/components/ui/code-block/CodeBlockToken.vue')['default']
     ListPosts: typeof import('./src/components/ListPosts.vue')['default']
     Logo: typeof import('./src/components/Logo.vue')['default']
-    LogosTelegram: typeof import('./src/components/icons/LogosTelegram.vue')['default']
     MdCodeBlock: typeof import('./src/components/MdCodeBlock.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

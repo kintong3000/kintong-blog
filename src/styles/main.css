@@ -20,7 +20,6 @@ html{
 
 html {
     background-color: var(--c-bg);
-    /*background-color: var(--vp-c-brand-1);*/
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -32,14 +31,6 @@ html.dark {
     color-scheme: dark;
 }
 
-html.dark .scroll-to-top {
-    color: rgb(255 255 255);
-}
-
-.scroll-to-top {
-    color: rgb(0, 0, 0);
-}
-
 button {
     cursor: pointer;
 }
@@ -49,48 +40,11 @@ button {
     background: #8884;
 }
 
-#nprogress {
-    pointer-events: none;
-}
-
-#nprogress .bar {
-    background: #888;
-    opacity: 0.75;
-    position: fixed;
-    z-index: 1031;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-}
-
-.sponsorkit-avatar {
-    cursor: pointer;
-}
-.sponsorkit-tier-title {
-    font-weight: 600;
-    font-size: 20px;
-    fill: currentColor;
-}
-.sponsorkit-name {
-    font-weight: 300;
-    font-size: 15px;
-    transform: translateY(8px);
-}
-
 h2 + p > em:first-child {
     opacity: 0.5;
     display: block;
     margin-top: -20px;
     font-size: 0.9em;
-}
-
-.dark [img-light] {
-    display: none;
-}
-
-html:not(.dark) [img-dark] {
-    display: none;
 }
 
 
@@ -112,53 +66,14 @@ html:not(.dark) [img-dark] {
     z-index: 1;
 }
 
-/* Overrides Floating Vue */
-.v-popper--theme-dropdown .v-popper__inner,
-.v-popper--theme-tooltip .v-popper__inner {
-    --at-apply: bg-base text-base rounded border border-base shadow;
-    box-shadow: 0 6px 30px #0000001a;
-}
-
-.v-popper--theme-tooltip .v-popper__arrow-inner,
-.v-popper--theme-dropdown .v-popper__arrow-inner {
-    visibility: visible;
-    --at-apply: border-white;
-    dark: border-black;
-}
-
-.v-popper--theme-tooltip .v-popper__arrow-outer,
-.v-popper--theme-dropdown .v-popper__arrow-outer {
-    --at-apply: border-base;
-}
-
-.v-popper--theme-tooltip.v-popper--shown,
-.v-popper--theme-tooltip.v-popper--shown * {
-    transition: none !important;
-}
-
-/* Transitions */
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.2s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
-}
-
-
 /* Vitepress component css */
 
 :root {
     --vp-c-divider: #e2e2e3;
     --vp-c-border: #c2c2c4;
-    --vp-c-gutter: #e2e2e3;
     --vp-c-gray-soft: rgba(142, 150, 170, 0.14);
     --vp-c-indigo-1: #3451b2;
-    --vp-c-white: #ffffff;
-    --vp-c-black: #000000;
-    --vp-c-neutral-inverse: var(--vp-c-white);
+    --vp-c-neutral-inverse: #ffffff;
     --vp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
     --vp-c-text-2: rgba(60, 60, 67, 0.78);
     --vp-c-text-1: rgba(60, 60, 67);
@@ -168,10 +83,9 @@ html:not(.dark) [img-dark] {
     --vp-c-text-1: rgba(255, 255, 245, 0.86);
     --vp-c-border: #3c3f44;
     --vp-c-divider: #2e2e32;
-    --vp-c-gutter: #000000;
     --vp-c-gray-soft: rgba(101, 117, 133, 0.16);
     --vp-c-indigo-1: #a8b1ff;
-    --vp-c-neutral-inverse: var(--vp-c-black);
+    --vp-c-neutral-inverse: #000000;
     --vp-c-text-2: rgba(235, 235, 245, 0.6);
 }
 
@@ -191,9 +105,9 @@ slide-enter
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    html:not(.no-sliding) [slide-enter],
-    html:not(.no-sliding) .slide-enter,
-    html:not(.no-sliding) .slide-enter-content > *:not(:has(.table-of-contents)) {
+    [slide-enter],
+    .slide-enter,
+    .slide-enter-content > *:not(:has(.table-of-contents)) {
         --enter-stage: 0;
         --enter-step: 90ms;
         --enter-initial: 0ms;
@@ -202,7 +116,7 @@ slide-enter
                 var(--enter-initial) + var(--enter-stage) * var(--enter-step)
         );
     }
-    html:not(.no-sliding) .slide-enter-50{
+    .slide-enter-50{
         --enter-stage: 3;
         --enter-step: 90ms;
         --enter-initial: 0ms;
@@ -211,8 +125,17 @@ slide-enter
                 var(--enter-initial) + var(--enter-stage) * var(--enter-step)
         );
     }
-    html:not(.no-sliding) .slide-enter-60{
+    .slide-enter-60{
         --enter-stage: 5;
+        --enter-step: 90ms;
+        --enter-initial: 0ms;
+        animation: slide-enter 1s both 1;
+        animation-delay: calc(
+                var(--enter-initial) + var(--enter-stage) * var(--enter-step)
+        );
+    }
+    .slide-enter-70{
+        --enter-stage: 7;
         --enter-step: 90ms;
         --enter-initial: 0ms;
         animation: slide-enter 1s both 1;
@@ -281,34 +204,3 @@ slide-enter
         --enter-stage: 20 !important;
     }
 }
-
-/*
-Flow color
-*/
-:root{
-    --vp-home-hero-name-color: transparent;
-    --vp-home-hero-name-background: -webkit-linear-gradient(
-            120deg,
-            var(--vp-c-brand-1) 30%,
-            var(--vp-c-brand-next)
-    );
-    --vp-home-hero-image-background-image:linear-gradient(
-            -45deg,
-            var(--vp-c-brand-1) 30%,
-            var(--vp-c-brand-next)
-    );
-    --vp-home-hero-image-filter: blur(80px);
-}
-
-@media (min-width: 640px) {
-    :root {
-        --vp-home-hero-image-filter: blur(120px);
-    }
-}
-
-@media (min-width: 960px) {
-    :root {
-        --vp-home-hero-image-filter: blur(120px);
-    }
-}
-

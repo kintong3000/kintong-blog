@@ -53,30 +53,14 @@
 
 <script  lang="ts" setup>
 
-import {useDark} from "@vueuse/core";
-
-const isTop = ref(true)
-const isDark = useDark()
-const handleScroll = () => {
-  // 判断滚动条位置
-  isTop.value = window.scrollY === 0
-}
 const { y: scroll } = useWindowScroll()
+const isTop = computed(() => scroll.value === 0)
 function toTop() {
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
   })
 }
-onMounted(() => {
-  // 添加滚动监听事件
-  window.addEventListener('scroll', handleScroll)
-})
-
-onBeforeUnmount(() => {
-  // 移除滚动监听事件
-  window.removeEventListener('scroll', handleScroll)
-})
 </script>
 
 <style scoped>
@@ -103,10 +87,6 @@ onBeforeUnmount(() => {
 
 .nav > * {
   margin: auto;
-}
-
-.nav img {
-  margin-bottom: 0;
 }
 
 .nav a {
@@ -153,14 +133,6 @@ onBeforeUnmount(() => {
   background-color: rgba(30, 30, 30, 0.5); /* 暗色模式下的半透明背景 */
 }
 
-
-html:not(.dark) .icon2 {
-  display: none;
-}
-
-.dark .icon1 {
-  display: none;
-}
 
 html:not(.dark) .icon2 {
   display: none;

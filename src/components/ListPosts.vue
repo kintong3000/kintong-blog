@@ -1,15 +1,12 @@
 <script setup lang="ts">
 import type {Post} from "@/types";
 import {formatDate} from "@/utils/formatDate";
-import {ref, computed} from 'vue';
 
 const props = defineProps<{
   type?: string
   posts?: Post[]
   extra?: Post[]
 }>()
-
-const checkedItems = ref([])
 
 const router = useRouter()
 const routes: any[] = router.getRoutes()
@@ -19,12 +16,6 @@ const routes: any[] = router.getRoutes()
       path: i.meta.frontmatter.redirect || i.path,
       title: i.meta.frontmatter.title,
       date: i.meta.frontmatter.date,
-      lang: i.meta.frontmatter.lang,
-      duration: i.meta.frontmatter.duration,
-      recording: i.meta.frontmatter.recording,
-      upcoming: i.meta.frontmatter.upcoming,
-      redirect: i.meta.frontmatter.redirect,
-      place: i.meta.frontmatter.place,
       tags: i.meta.frontmatter.tags,
     }))
 

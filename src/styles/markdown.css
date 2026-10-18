@@ -67,25 +67,3 @@
     color: var(--fg-deeper);
     background-size: 100% 1px;
 }
-
-
-.vp-adaptive-theme {
-    position: relative;
-}
-
-.lang{
-    position: absolute;
-    right:0.5em;
-    top:0.5em;
-    @apply text-xs font-sans opacity-100 transition duration-500 text-zinc-700;
-
-}
-
-
-.vp-adaptive-theme:hover .lang{
-    opacity: 0;
-
-    @apply transition duration-500;
-}
-
-

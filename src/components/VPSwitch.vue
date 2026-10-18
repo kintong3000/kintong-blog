@@ -64,5 +64,3 @@
   transition: opacity 0.25s !important;
 }
 </style>
-<script setup lang="ts">
-</script>

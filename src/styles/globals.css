@@ -1,6 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "@fontsource-variable/inter";
@@ -10,7 +8,6 @@
 @import "./main.css" layer(components);
 @import "./prose.css" layer(components);
 @import "./markdown.css" layer(components);
-@import "./rainbow.css" layer(components);
 @import "shadcn-vue/tailwind.css";
 
 @plugin "@iconify/tailwind4" {

@@ -6,7 +6,3 @@
     <div class="flex-auto" />
   </div>
 </template>
-
-<style scoped>
-
-</style>
