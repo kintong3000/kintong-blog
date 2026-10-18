@@ -72,6 +72,62 @@ onMounted(() => {
   }, 1)
 })
 
+// 目录：滚动时显示，停止滚动后淡出，并高亮当前阅读的章节
+onMounted(() => {
+  const toc = document.querySelector<HTMLElement>('.table-of-contents')
+  const list = toc?.querySelector<HTMLElement>(':scope > ul')
+  if (!toc || !list)
+    return
+
+  // markdown-it-anchor 生成的 id 本身就是编码后的字符串，与 href 去掉 # 后一致
+  const items = Array.from(toc.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'))
+    .map(link => ({ link, heading: document.getElementById(link.getAttribute('href')!.slice(1)) }))
+    .filter((item): item is { link: HTMLAnchorElement, heading: HTMLElement } => !!item.heading)
+
+  // 与 html 的 scroll-padding-top 对应，标题滚到顶部附近即视为进入该章节
+  const offset = 100
+  let active: HTMLAnchorElement | undefined
+
+  const highlight = () => {
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2
+    let current: HTMLAnchorElement | undefined
+    if (atBottom) {
+      current = items.at(-1)?.link
+    }
+    else {
+      for (const { link, heading } of items) {
+        if (heading.getBoundingClientRect().top > offset)
+          break
+        current = link
+      }
+    }
+    if (current === active)
+      return
+
+    active?.classList.remove('active')
+    current?.classList.add('active')
+    active = current
+
+    // 目录过长时，让高亮项保持在目录可视区域内
+    if (current) {
+      const listRect = list.getBoundingClientRect()
+      const linkRect = current.getBoundingClientRect()
+      if (linkRect.top < listRect.top || linkRect.bottom > listRect.bottom)
+        list.scrollTop += linkRect.top - listRect.top - listRect.height / 2
+    }
+  }
+
+  const { start: hideLater } = useTimeoutFn(() => toc.classList.remove('toc-visible'), 1500, { immediate: false })
+
+  useEventListener(window, 'scroll', useThrottleFn(() => {
+    toc.classList.add('toc-visible')
+    hideLater()
+    highlight()
+  }, 100, true), { passive: true })
+
+  highlight()
+})
+
 
 
 </script>
