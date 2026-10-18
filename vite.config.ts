@@ -56,6 +56,10 @@ export default defineConfig({
 
                 md.use(anchor)
                 md.use(GitHubAlerts)
+
+                // 表格外包一层容器，窄屏时横向滚动而不撑破版面
+                md.renderer.rules.table_open = () => '<div class="table-wrapper"><table>'
+                md.renderer.rules.table_close = () => '</table></div>'
                 // md.use(preWrapperPlugin, false)
             }
         }),

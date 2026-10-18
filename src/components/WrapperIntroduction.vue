@@ -9,7 +9,7 @@ const isDark = useDark();
 <template>
   <!--  <div class="bg-color-flow "></div>-->
 
-  <div class="prose prose-coolgray dark:prose-invert m-auto ">
+  <div class="prose prose-coolgray dark:prose-invert m-auto px-5 box-content">
     <div
         class="prose m-auto mb-8"
     >
