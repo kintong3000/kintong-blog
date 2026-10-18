@@ -1,103 +1,135 @@
-# 个人博客网站
+# Kintong 的个人博客
 
-这是一个基于 Vue 3 和 Vite 构建的现代化、高性能静态博客网站。
+[English](./README-EN.md) | 简体中文
 
-## ✨ 功能特性
-- **📄 Markdown 驱动** - 博客文章和页面内容均由 Markdown 文件生成。
-- **🚀 静态站点生成 (SSG)** - 通过 `vite-ssg` 预渲染网站为静态 HTML，带来极致的加载速度和优秀的 SEO。
-- **☁️ 自动化部署** - 可免费部署在 [Vercel](https://vercel.com/) 等平台，提交代码即可自动更新线上页面。
+基于 Vue 3 + Vite 的静态博客。文章用 Markdown 写，构建时预渲染成纯静态 HTML，部署在 Vercel。
+
+## ✨ 特性
+
+- **Markdown 写作**：`pages/` 下的 `.md` 文件即页面，文件路径即路由
+- **静态站点生成**：`vite-ssg` 预渲染所有页面，首屏快、对 SEO 友好
+- **代码块**：构建时用 Shiki 高亮，支持标题、行高亮、diff、行号、自动换行、复制、下载和长代码折叠
+- **阅读体验**：针对中文优化的排版、跟随滚动高亮当前章节的目录、GitHub 风格提示框
+- **亮 / 暗模式**：切换时带圆形扩散过渡动画
+- **标签筛选**：博客列表按年份分组，可按标签筛选
 
 ## 🛠️ 技术栈
 
-- **框架:** [Vue 3](https://vuejs.org/)
-- **构建工具:** [Vite](https://vitejs.dev/)
-- **路由:** [vue-router](https://router.vuejs.org/)（内置基于文件的路由）
-- **CSS:** [Tailwind CSS](https://tailwindcss.com)
-- **Markdown 解析:** [unplugin-vue-markdown](https://github.com/unplugin/unplugin-vue-markdown)
-- **静态站点生成 (SSG):** [vite-ssg](https://github.com/antfu/vite-ssg)
-- **组件/API 自动导入:**
-  - [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
-  - [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)
+| 用途 | 选型 |
+|---|---|
+| 框架 | [Vue 3](https://vuejs.org/) + TypeScript |
+| 构建 | [Vite](https://vitejs.dev/) + [vite-ssg](https://github.com/antfu-collective/vite-ssg) |
+| 路由 | [Vue Router](https://router.vuejs.org/)（基于文件的路由） |
+| 样式 | [Tailwind CSS v4](https://tailwindcss.com) + [shadcn-vue](https://www.shadcn-vue.com/) |
+| Markdown | [unplugin-vue-markdown](https://github.com/unplugin/unplugin-vue-markdown) + [Shiki](https://shiki.style/) |
+| 动画 | [motion-v](https://motion.dev/docs/vue) |
+| 自动导入 | [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components)、[unplugin-auto-import](https://github.com/unplugin/unplugin-auto-import) |
+| 包管理 | [Bun](https://bun.sh/) |
+
+## 🚀 本地开发
+
+环境要求：[Node.js](https://nodejs.org/) >= 20.19、[Bun](https://bun.sh/) >= 1.4
+
+```bash
+git clone https://github.com/kintong3000/kintong-blog.git
+cd kintong-blog
+bun install
+
+bun run dev      # 启动开发服务器 http://localhost:5173
+bun run build    # 类型检查并构建到 dist/
+bun run preview  # 本地预览构建结果
+```
+
+> [!NOTE]
+> 项目只使用 Bun，不要用 npm / pnpm / yarn 安装依赖，`.gitignore` 已忽略它们的锁文件。
+
+## ✍️ 写文章
+
+在 `pages/blogs/` 下新建 `.md` 文件，文件名就是文章的 URL，例如 `pages/blogs/hello-world.md` 对应 `/blogs/hello-world`。
+
+### Frontmatter
+
+```yaml
+---
+title: 文章标题
+date: 2024-04-08
+tags:
+  - 服务器
+draft: true        # 可选，草稿不出现在博客列表中
+redirect: https://...  # 可选，列表中点击后跳转到这个链接
+---
+```
+
+只有写了 `date` 的文章才会出现在博客列表中。
+
+### 目录
+
+在正文开头写 `[[toc]]`，会在页面左侧生成目录（大屏可见）。目录收录 h1 至 h4。
+
+### 代码块
+
+````md
+```ts title="main.ts" {2}
+const a = 1
+const b = 2 // 第 2 行高亮
+console.log(a) // [!code ++]
+console.log(b) // [!code --]
+```
+````
+
+- `title="..."`：标题栏显示的文件名，也是下载时的文件名；不写时显示语言名
+- `{1,3-5}`：高亮指定行
+- `// [!code ++]`、`// [!code --]`、`// [!code highlight]`：标记新增、删除、高亮行
+- 超过 15 行的代码块会自动折叠
+
+### 提示框
+
+```md
+> [!NOTE]
+> 补充说明
+
+> [!WARNING]
+> 注意事项
+```
+
+支持 `NOTE`、`TIP`、`IMPORTANT`、`WARNING`、`CAUTION`。
 
 ## 📂 项目结构
 
 ```
 .
-├── pages/                  # 页面和路由组件
-│   ├── index.md            # 网站首页
-│   └── blogs/              # 博客文章目录
-│       ├── index.md        # 博客列表页
-│       └── *.md            # 具体的博客文章
+├── pages/                    # 页面，文件路径即路由
+│   ├── index.md              # 首页
+│   ├── email.vue             # 联系方式
+│   └── blogs/
+│       ├── index.md          # 博客列表
+│       └── *.md              # 文章
+├── plugins/
+│   └── markdownCodeBlock.ts  # 构建时把代码块渲染成 CodeBlock 组件
+├── public/                   # 静态资源，原样复制到 dist/
 ├── src/
-│   ├── App.vue             # Vue 应用根组件
-│   ├── main.ts             # 应用入口文件
-│   ├── components/         # 全局 Vue 组件（自动导入）
-│   │   └── icons/          # 图标组件
-│   ├── styles/             # 全局样式
-│   ├── types/              # TypeScript 类型定义
-│   └── utils/              # 工具函数
-├── public/                 # 静态资源，原样复制到 dist/
-└── vite.config.ts          # Vite 配置文件
+│   ├── components/           # 组件（自动导入）
+│   │   ├── icons/            # 图标组件
+│   │   └── ui/               # shadcn-vue 组件
+│   ├── lib/                  # shadcn-vue 工具函数
+│   ├── styles/               # 全局样式、文章排版、目录样式
+│   ├── types/                # 类型定义
+│   ├── utils/                # 工具函数
+│   ├── App.vue
+│   └── main.ts
+└── vite.config.ts            # Vite、Markdown、路由配置
 ```
 
-## 🚀 本地开发
+## 🏛️ 构建与部署
 
-**环境要求:**
+`bun run build` 的流程：
 
-- [Node.js](http://nodejs.org/) >= 18
-- [Bun](https://bun.sh/) >= 1.4
+1. Vue Router 扫描 `pages/` 生成路由，并读取每篇 Markdown 的 frontmatter 写入路由 `meta`
+2. `unplugin-vue-markdown` 把 Markdown 转成 Vue 组件，代码块由 Shiki 在构建时完成高亮
+3. `vite-ssg` 逐个渲染所有路由，输出静态 HTML 到 `dist/`
 
-**步骤:**
+项目关联 Vercel 后，每次推送到 GitHub 都会自动构建并部署 `dist/`。
 
-1.  **克隆仓库**
-    ```bash
-    git clone https://github.com/your-repo/kintong3000.me.git
-    cd kintong3000.me
-    ```
+## 📄 许可
 
-2.  **安装依赖**
-    ```bash
-    bun install
-    ```
-
-3.  **启动开发服务器**
-    此命令会启动一个热重载的开发服务器，访问地址通常是 `http://localhost:5173`。
-    ```bash
-    bun run dev
-    ```
-
-4.  **构建项目**
-    此命令会将整个网站构建成静态文件，输出到 `dist/` 目录。
-    ```bash
-    bun run build
-    ```
-
-5.  **本地预览构建结果**
-    此命令可以在本地启动一个服务器来预览 `dist/` 目录中的静态文件。
-    ```bash
-    bun run preview
-    ```
-
-## 🏛️ 架构
-
-本项目的核心是**静态站点生成 (SSG)** 架构与 **Vercel** 平台的自动化部署流程（CI/CD）的结合。
-
-这使得开发者只需专注于内容创作，其余的构建和部署工作将自动完成。
-
-### 静态站点生成 (SSG) 工作流
-
-当执行 `bun run build` 命令时，项目会将代码和 Markdown 内容转换为一个完整的、纯静态的网站。这个过程如下：
-
-1.  **内容扫描**：Vue Router 内置的文件路由插件扫描 `pages/` 目录的结构，并自动生成对应的网站路由。
-2.  **内容转换**：`unplugin-vue-markdown` 插件读取所有 `.md` 文件，将其内容转换为 Vue 组件。
-3.  **页面预渲染**：`vite-ssg` 工具会模拟访问网站的每一个页面，执行对应的 Vue 组件，并将最终渲染结果捕获为纯粹的 HTML 文件。
-4.  **产物输出**：所有生成的 HTML、CSS 和 JavaScript 文件被统一输出到 `dist/` 目录。这个目录包含了整个可部署的网站。
-
-### Vercel 自动化部署流程
-
-当项目与 Vercel 关联后，每一次代码提交都会触发一次自动化的部署：
-
-1.  **本地提交**：您在本地修改代码或在 `pages/` 目录下更新文章，然后使用 `git push` 将变更推送到 GitHub 仓库。
-2.  **触发部署**：GitHub 通过 Webhook 自动通知 Vercel 代码有更新。
-3.  **云端构建**：Vercel 收到通知后，会拉取最新的代码，并自动执行 `bun run build` 命令，在云端完成上述的 SSG 构建流程。
-4.  **原子化部署**：构建成功后，Vercel 会将生成的 `dist/` 目录部署到其全球 CDN 网络，并瞬间将您的域名指向这个最新版本，整个过程平滑且无中断。
+文章内容采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可。

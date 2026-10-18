@@ -1,104 +1,135 @@
-# Personal Blog Website
+# Kintong's Blog
 
-This is a modern, high-performance static blog website built with Vue 3 and Vite.
+English | [简体中文](./README.md)
+
+A static blog built with Vue 3 + Vite. Posts are written in Markdown, pre-rendered into plain static HTML at build time, and deployed on Vercel.
 
 ## ✨ Features
 
-- **📄 Markdown Driven** - Blog posts and page content are generated from Markdown files.
-- **🚀 Static Site Generation (SSG)** - Uses `vite-ssg` to pre-render the website into static HTML, delivering extreme loading speeds and excellent SEO.
-- **☁️ Automated Deployment** - Can be deployed for free on platforms like [Vercel](https://vercel.com/), with automatic updates upon code commits.
+- **Markdown writing**: every `.md` file under `pages/` is a page, and its file path is its route
+- **Static site generation**: `vite-ssg` pre-renders every page for a fast first load and good SEO
+- **Code blocks**: highlighted by Shiki at build time, with titles, line highlighting, diffs, line numbers, word wrap, copy, download, and folding for long code
+- **Reading experience**: typography tuned for Chinese text, a table of contents that highlights the current section as you scroll, and GitHub-style alerts
+- **Light / dark mode**: switching plays a circular reveal transition
+- **Tag filtering**: the blog list is grouped by year and can be filtered by tag
 
 ## 🛠️ Tech Stack
 
-- **Framework:** [Vue 3](https://vuejs.org/)
-- **Build Tool:** [Vite](https://vitejs.dev/)
-- **Routing:** [vue-router](https://router.vuejs.org/) (built-in file-based routing)
-- **CSS:** [Tailwind CSS](https://tailwindcss.com)
-- **Markdown Parsing:** [unplugin-vue-markdown](https://github.com/unplugin/unplugin-vue-markdown)
-- **Static Site Generation (SSG):** [vite-ssg](https://github.com/antfu/vite-ssg)
-- **Auto Imports:**
-  - [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
-  - [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)
+| Purpose | Choice |
+|---|---|
+| Framework | [Vue 3](https://vuejs.org/) + TypeScript |
+| Build | [Vite](https://vitejs.dev/) + [vite-ssg](https://github.com/antfu-collective/vite-ssg) |
+| Routing | [Vue Router](https://router.vuejs.org/) (file-based routing) |
+| Styling | [Tailwind CSS v4](https://tailwindcss.com) + [shadcn-vue](https://www.shadcn-vue.com/) |
+| Markdown | [unplugin-vue-markdown](https://github.com/unplugin/unplugin-vue-markdown) + [Shiki](https://shiki.style/) |
+| Animation | [motion-v](https://motion.dev/docs/vue) |
+| Auto imports | [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components), [unplugin-auto-import](https://github.com/unplugin/unplugin-auto-import) |
+| Package manager | [Bun](https://bun.sh/) |
+
+## 🚀 Local Development
+
+Requirements: [Node.js](https://nodejs.org/) >= 20.19, [Bun](https://bun.sh/) >= 1.4
+
+```bash
+git clone https://github.com/kintong3000/kintong-blog.git
+cd kintong-blog
+bun install
+
+bun run dev      # start the dev server at http://localhost:5173
+bun run build    # type-check and build to dist/
+bun run preview  # preview the build locally
+```
+
+> [!NOTE]
+> This project uses Bun only. Don't install dependencies with npm / pnpm / yarn; their lockfiles are ignored in `.gitignore`.
+
+## ✍️ Writing Posts
+
+Create a `.md` file under `pages/blogs/`. The file name becomes the post URL, e.g. `pages/blogs/hello-world.md` maps to `/blogs/hello-world`.
+
+### Frontmatter
+
+```yaml
+---
+title: Post title
+date: 2024-04-08
+tags:
+  - Server
+draft: true            # optional, drafts are hidden from the blog list
+redirect: https://...  # optional, the list links here instead
+---
+```
+
+Only posts with a `date` appear in the blog list.
+
+### Table of Contents
+
+Put `[[toc]]` at the top of the post to show a table of contents on the left side of the page (on large screens). It covers h1 to h4.
+
+### Code Blocks
+
+````md
+```ts title="main.ts" {2}
+const a = 1
+const b = 2 // line 2 is highlighted
+console.log(a) // [!code ++]
+console.log(b) // [!code --]
+```
+````
+
+- `title="..."`: file name shown in the header and used when downloading; the language name is shown if omitted
+- `{1,3-5}`: highlight specific lines
+- `// [!code ++]`, `// [!code --]`, `// [!code highlight]`: mark added, removed, or highlighted lines
+- Code blocks longer than 15 lines are folded automatically
+
+### Alerts
+
+```md
+> [!NOTE]
+> Extra information
+
+> [!WARNING]
+> Something to watch out for
+```
+
+Supported types: `NOTE`, `TIP`, `IMPORTANT`, `WARNING`, `CAUTION`.
 
 ## 📂 Project Structure
 
 ```
 .
-├── pages/                  # Page and route components
-│   ├── index.md            # Website homepage
-│   └── blogs/              # Blog posts directory
-│       ├── index.md        # Blog list page
-│       └── *.md            # Individual blog posts
+├── pages/                    # pages, file path = route
+│   ├── index.md              # home page
+│   ├── email.vue             # contact
+│   └── blogs/
+│       ├── index.md          # blog list
+│       └── *.md              # posts
+├── plugins/
+│   └── markdownCodeBlock.ts  # renders code blocks into CodeBlock components at build time
+├── public/                   # static assets, copied as-is to dist/
 ├── src/
-│   ├── App.vue             # Root Vue application component
-│   ├── main.ts             # Application entry point
-│   ├── components/         # Global Vue components (auto-imported)
-│   │   └── icons/          # Icon components
-│   ├── styles/             # Global styles
-│   ├── types/              # TypeScript type definitions
-│   └── utils/              # Utility functions
-├── public/                 # Static assets, copied as-is to dist/
-└── vite.config.ts          # Vite configuration file
+│   ├── components/           # components (auto-imported)
+│   │   ├── icons/            # icon components
+│   │   └── ui/               # shadcn-vue components
+│   ├── lib/                  # shadcn-vue helpers
+│   ├── styles/               # global styles, post typography, TOC styles
+│   ├── types/                # type definitions
+│   ├── utils/                # utilities
+│   ├── App.vue
+│   └── main.ts
+└── vite.config.ts            # Vite, Markdown and routing config
 ```
 
-## 🚀 Local Development
+## 🏛️ Build & Deployment
 
-**Prerequisites:**
+What `bun run build` does:
 
-- [Node.js](http://nodejs.org/) >= 18
-- [Bun](https://bun.sh/) >= 1.4
+1. Vue Router scans `pages/` to generate routes, and reads each Markdown file's frontmatter into the route `meta`
+2. `unplugin-vue-markdown` turns Markdown into Vue components, with code blocks highlighted by Shiki at build time
+3. `vite-ssg` renders every route and writes static HTML to `dist/`
 
-**Steps:**
+Once the project is linked to Vercel, every push to GitHub automatically builds and deploys `dist/`.
 
-1.  **Clone the repository**
-    ```bash
-    git clone https://github.com/your-repo/kintong3000.me.git
-    cd kintong3000.me
-    ```
+## 📄 License
 
-2.  **Install dependencies**
-    ```bash
-    bun install
-    ```
-
-3.  **Start the development server**
-    This command starts a hot-reloading development server, usually available at `http://localhost:5173`.
-    ```bash
-    bun run dev
-    ```
-
-4.  **Build the project**
-    This command builds the entire website into static files, outputting them to the `dist/` directory.
-    ```bash
-    bun run build
-    ```
-
-5.  **Preview the build locally**
-    This command starts a local server to preview the static files from the `dist/` directory.
-    ```bash
-    bun run preview
-    ```
-
-## 🏛️ Architecture & Deployment
-
-The core of this project is the combination of a **Static Site Generation (SSG)** architecture and the automated deployment pipeline (CI/CD) from platforms like **Vercel**.
-
-This allows developers to focus solely on creating content, while the build and deployment processes are handled automatically.
-
-### Static Site Generation (SSG) Workflow
-
-When the `bun run build` command is executed, the project converts the source code and Markdown content into a complete, purely static website. The process is as follows:
-
-1.  **Content Scanning**: Vue Router's built-in file-based routing plugin scans the structure of the `pages/` directory and automatically generates the corresponding website routes.
-2.  **Content Transformation**: The `unplugin-vue-markdown` plugin reads all `.md` files and converts their content into Vue components.
-3.  **Page Pre-rendering**: The `vite-ssg` tool simulates a visit to every page of the site, executes the corresponding Vue components, and captures the final rendered output as plain HTML files.
-4.  **Artifact Output**: All generated HTML, CSS, and JavaScript files are placed in the `dist/` directory, which contains the entire deployable website.
-
-### Vercel's Automated Deployment Flow
-
-Once the project is linked to Vercel, every `git push` triggers an automated deployment:
-
-1.  **Local Commit**: You modify code or update an article in the `pages/` directory and push the changes to your GitHub repository using `git push`.
-2.  **Trigger Deployment**: GitHub notifies Vercel of the update via a webhook.
-3.  **Cloud Build**: Vercel pulls the latest code and automatically runs the `bun run build` command, completing the SSG process in the cloud.
-4.  **Atomic Deployment**: After a successful build, Vercel deploys the `dist/` directory to its global CDN and instantly points your domain to the new version. This process is seamless and ensures no downtime.
+Post content is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
