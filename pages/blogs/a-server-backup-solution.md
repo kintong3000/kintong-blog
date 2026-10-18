@@ -2,7 +2,7 @@
 title: Rclone+Restic实现服务器数据定期增量备份
 date: 2024-04-08
 tags:
-  - 服务器运维
+  - 服务器
 ---
 
 [[toc]]

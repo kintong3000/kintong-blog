@@ -4,31 +4,50 @@ import {useDark} from "@vueuse/core";
 
 const isDark = useDark();
 
+interface Props {
+  delay?: number;
+  duration?: number;
+  blur?: string;
+  yOffset?: number;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  delay: 0.2,
+  duration: 0.75,
+  blur: "20px",
+  yOffset: 20,
+});
 </script>
 
 <template>
   <!--  <div class="bg-color-flow "></div>-->
-
-  <div class="prose prose-coolgray dark:prose-invert m-auto px-5 box-content">
-    <div
-        class="prose m-auto mb-8"
+    <BlurReveal
+        :delay="props.delay"
+        :duration="props.duration"
+        :blur="props.blur"
+        :y-offset="props.yOffset"
+        class="p-8"
     >
-      <h1>Hi there!</h1>
-      <h1>
-        <span>I am </span>
-        <span class="mb-0 slide-enter-50 clip">Kintong Cheung</span>
-      </h1>
-      <h1 v-show="isDark"> </h1>
-    </div>
+      <div class="prose prose-coolgray dark:prose-invert m-auto px-5 box-content">
+        <div
+            class="prose m-auto mb-8"
+        >
+          <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">Hi there!  👋</h2>
 
-    <article class="text-base ">
-      <div class="slide-enter-content">
-        <slot/>
+          <h1 v-show="isDark"> </h1>
+        </div>
+
+        <article class="text-base ">
+          <div class="slide-enter-content">
+            <slot/>
+          </div>
+
+        </article>
+
       </div>
+    </BlurReveal>
 
-    </article>
 
-  </div>
 
 </template>
 

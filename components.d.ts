@@ -10,6 +10,7 @@ declare module 'vue' {
     AppFooter: typeof import('./src/components/AppFooter.vue')['default']
     AppHeader: typeof import('./src/components/AppHeader.vue')['default']
     Badge: typeof import('./src/components/ui/badge/Badge.vue')['default']
+    BlurReveal: typeof import('./src/components/ui/blur-reveal/BlurReveal.vue')['default']
     Button: typeof import('./src/components/ui/button/Button.vue')['default']
     CiMail: typeof import('./src/components/icons/CiMail.vue')['default']
     CodeBlock: typeof import('./src/components/ui/code-block/CodeBlock.vue')['default']

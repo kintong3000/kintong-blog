@@ -31,10 +31,6 @@
           </a>
 
           <div class="divider"></div>
-          <a href="https://t.me/kintong3000" title="Telegram">
-            <LogosTelegram/>
-          </a>
-          <div class="divider"></div>
 
           <ToggleDarkSwitch/>
         </div>
