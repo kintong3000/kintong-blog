@@ -14,6 +14,8 @@ import anchor from "markdown-it-anchor";
 import GitHubAlerts from 'markdown-it-github-alerts'
 import tailwindcss from '@tailwindcss/vite'
 import markdownCodeBlock from './plugins/markdownCodeBlock'
+// 引入 vite-ssg 的类型，为 Vite 配置补充 ssgOptions 字段
+import type {} from 'vite-ssg'
 
 
 export default defineConfig({
@@ -93,6 +95,10 @@ export default defineConfig({
         }),
 
     ],
+    ssgOptions: {
+        // 输出 blogs/index.html 而不是 blogs.html，任何静态托管都能直接按路径访问
+        dirStyle: 'nested',
+    },
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),
