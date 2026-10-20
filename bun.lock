@@ -33,7 +33,7 @@
         "markdown-it": "^14.0.0",
         "markdown-it-anchor": "^8.6.7",
         "markdown-it-github-alerts": "^1.0.1",
-        "markdown-it-table-of-contents": "^0.6.0",
+        "markdown-it-table-of-contents": "^1.2.0",
         "tailwindcss": "^4.3.3",
         "tw-animate-css": "^1.4.0",
         "typescript": "^5.9.2",
@@ -980,7 +980,7 @@
 
     "markdown-it-github-alerts": ["markdown-it-github-alerts@1.0.1", "", { "peerDependencies": { "markdown-it": ">= 13.0.0" } }, "sha512-NNATF4QdoGI07hyCitoB2YqJ1YcNVCKT89ut2VtfFY9rkeFCXe/V2lOonKQLpJiq5DjiZZepf97BJx5xOjFIAw=="],
 
-    "markdown-it-table-of-contents": ["markdown-it-table-of-contents@0.6.0", "", {}, "sha512-jHvEjZVEibyW97zEYg19mZCIXO16lHbvRaPDkEuOfMPBmzlI7cYczMZLMfUvwkhdOVQpIxu3gx6mgaw46KsNsQ=="],
+    "markdown-it-table-of-contents": ["markdown-it-table-of-contents@1.2.0", "", {}, "sha512-8+8WYI9snTDMB/uGqVGze9YV6Pf4TtQmv79UUl/98ohxobxLayVdiE78zX2VLYKCtNm1ml2b+8dzI54UGesHlA=="],
 
     "math-intrinsics": ["math-intrinsics@1.1.0", "", {}, "sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g=="],
 
