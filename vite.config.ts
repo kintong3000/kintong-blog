@@ -95,6 +95,37 @@ export default defineConfig({
         }),
 
     ],
+    // 页面来自虚拟路由模块、组件由插件自动导入，Vite 启动扫描发现不了这些依赖，
+    // 首次跳转时才预构建会触发整页刷新导致跳转失败，这里提前声明
+    optimizeDeps: {
+        include: [
+            '@lucide/vue',
+            '@unhead/vue',
+            'class-variance-authority',
+            'cn',
+            'motion-v',
+            'reka-ui',
+            'shiki/core',
+            'shiki/engine/javascript',
+            // 与 src/components/ui/code-block/highlighter.ts 中的语言和主题保持一致
+            'shiki/langs/css.mjs',
+            'shiki/langs/diff.mjs',
+            'shiki/langs/html.mjs',
+            'shiki/langs/javascript.mjs',
+            'shiki/langs/json.mjs',
+            'shiki/langs/jsx.mjs',
+            'shiki/langs/markdown.mjs',
+            'shiki/langs/python.mjs',
+            'shiki/langs/shellscript.mjs',
+            'shiki/langs/sql.mjs',
+            'shiki/langs/tsx.mjs',
+            'shiki/langs/typescript.mjs',
+            'shiki/langs/vue.mjs',
+            'shiki/langs/yaml.mjs',
+            'shiki/themes/github-dark.mjs',
+            'shiki/themes/github-light.mjs',
+        ],
+    },
     ssgOptions: {
         // 输出 blogs/index.html 而不是 blogs.html，任何静态托管都能直接按路径访问
         dirStyle: 'nested',

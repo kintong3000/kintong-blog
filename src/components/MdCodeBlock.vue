@@ -47,7 +47,7 @@ function download() {
 
 <template>
   <CodeBlock class="my-4">
-    <CodeBlockHeader v-if="label" class="border-b border-foreground/10 pb-3">
+    <CodeBlockHeader v-if="label" class="border-b border-foreground/10 bg-foreground/4 pb-3 dark:bg-foreground/6">
       <CodeBlockTitle>{{ label }}</CodeBlockTitle>
     </CodeBlockHeader>
     <CodeBlockActions>
